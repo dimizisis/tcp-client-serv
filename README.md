@@ -157,7 +157,7 @@ if __name__ == '__main__':  # server_main.py
 
 2. Implement prepare_request & process_reply function (PyCharm screenshot):
 
-![alt text](https://i.imgur.com/MeNGIsc.png)
+![alt text](https://i.imgur.com/ScqG1oR.png)
 
 3. Client knows what kind of request to send through prepare_request function, process_reply function is for printing server's message. input_msg (process_reply parameter) is server's reply.
 

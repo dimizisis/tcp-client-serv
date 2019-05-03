@@ -60,6 +60,7 @@ client = Client(host, port, protocol)
 ```
 or
 ```
+my_port = 2345
 client = Client(port=my_port, protocol=MyClientProtocol()) # host is by default localhost
 ```
 or

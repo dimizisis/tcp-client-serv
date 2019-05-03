@@ -5,15 +5,9 @@ from abc import ABCMeta, abstractmethod
 
 class IterativeServer:
 
-    def __init__(self, port, protocol):
+    def __init__(self, port=1234, protocol=None):
         self.protocol = protocol
         self.port = port
-        self.connection_socket = socket.socket()
-        self.connection_socket.bind(('', self.port))    # localhost
-
-    def __init__(self, protocol):
-        self.protocol = protocol
-        self.port = 1234    # default port 1234
         self.connection_socket = socket.socket()
         self.connection_socket.bind(('', self.port))    # localhost
 
@@ -53,15 +47,9 @@ class IterativeServer:
 
 class Server:
 
-    def __init__(self, port, protocol):
+    def __init__(self, port=1234, protocol=None):
         self.protocol = protocol
         self.port = port
-        self.connection_socket = socket.socket()
-        self.connection_socket.bind(('', self.port))    # localhost
-
-    def __init__(self, protocol):
-        self.protocol = protocol
-        self.port = 1234    # default port 1234
         self.connection_socket = socket.socket()
         self.connection_socket.bind(('', self.port))    # localhost
 
@@ -100,15 +88,9 @@ class Server:
 
 class MultiThreadedServer:
 
-    def __init__(self, port, protocol):
+    def __init__(self, port=1234, protocol=None):
         self.protocol = protocol
         self.port = port
-        self.connection_socket = socket.socket()
-        self.connection_socket.bind(('', self.port))    # localhost
-
-    def __init__(self, protocol):
-        self.protocol = protocol
-        self.port = 1234    # default port 1234
         self.connection_socket = socket.socket()
         self.connection_socket.bind(('', self.port))    # localhost
 

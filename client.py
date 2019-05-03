@@ -4,24 +4,10 @@ from abc import ABCMeta, abstractmethod
 
 class Client:
 
-    def __init__(self, host, port, protocol):
+    def __init__(self, host='localhost', port=1234, protocol=None):
         self.protocol = protocol
         self.host = host
         self.port = port
-        self.data_socket = socket.socket()
-        self.data_socket.connect((self.host, self.port))
-
-    def __init__(self, port, protocol):
-        self.protocol = protocol
-        self.host = 'localhost'
-        self.port = port
-        self.data_socket = socket.socket()
-        self.data_socket.connect((self.host, self.port))
-
-    def __init__(self, protocol):
-        self.protocol = protocol
-        self.host = 'localhost'
-        self.port = 1234
         self.data_socket = socket.socket()
         self.data_socket.connect((self.host, self.port))
 

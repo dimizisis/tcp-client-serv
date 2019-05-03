@@ -188,3 +188,7 @@ if __name__ == '__main__':  # client_main.py
                   # If it does, client will send the request to server
                   # When a reply comes back, connection closes
 ```   
+
+## Credits
+
+Legacy code: [Professor K.G. Margaritis](https://sites.google.com/site/kgmargaritis/)

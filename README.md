@@ -33,8 +33,6 @@ IterativeServer
 MultithreadedServer
 ```
 
-All three classes have 2 constructors (same for all three classes) & all three are binding to localhost.
-
 To create a server object (i.e. simple Server):
 
 ```
@@ -42,7 +40,7 @@ server = Server(port, protocol)
 ```
 or
 ```
-server = Server(protocol) # port is by default 1234
+server = Server(protocol=MyServerProtocol()) # port is by default 1234
 ```
 
 Same logic for the other two classes (IterativeServer, MultithreadedServer).
@@ -55,8 +53,6 @@ server.listen() # server is ready to receive request
 
 ### client.py
 
-Client class has 3 constructors.
-
 To create an object of Client class:
 
 ```
@@ -64,12 +60,12 @@ client = Client(host, port, protocol)
 ```
 or
 ```
-client = Client(port, protocol) # host is by default localhost
+client = Client(port=my_port, protocol=MyClientProtocol()) # host is by default localhost
 ```
 or
 ```
-client = Client(protocol) # host is by default localhost, 
-                          # port is by default 1234
+client = Client(protocol=MyClientProtocol()) # host is by default localhost, 
+                                             # port is by default 1234
 ```                         
 
 open() function establishes connection with Server (server must probably be listening):
@@ -88,7 +84,7 @@ Server will wait for a request, will send response (if no errors will occure) an
 ##### Usage Example 
 
 ```
-server = Server(a_server_protocol())  # create server object (must create a protocol to pass)
+server = Server(protocol=a_server_protocol())  # create server object (must create a protocol to pass)
 
 server.listen() # server will listen for one request only
 ```
@@ -100,7 +96,7 @@ IterativeServer will serve one client at a time, until it is stopped (CTRL + C).
 ##### Usage Example
 
 ```
-server = IterativeServer(a_server_protocol())  # create server object (must create a protocol to pass)
+server = IterativeServer(protocol=a_server_protocol())  # create server object (must create a protocol to pass)
 
 server.listen() # server will listen forever, and serve one client each time (not 2 or more parallel)
 ```
@@ -111,7 +107,7 @@ Multithreaded server creates a thread, for each request arrives. The difference 
 ##### Usage Example
 
 ```
-server = MultithreadedServer(a_server_protocol())  # create server object (must create a protocol to pass)
+server = MultithreadedServer(protocol=a_server_protocol())  # create server object (must create a protocol to pass)
 
 server.listen() # server will listen forever, and serve multiple client requests in parallel
 ```
@@ -146,7 +142,7 @@ if __name__ == '__main__':  # server_main.py
 
     server_protocol = MyServerProtocol() # create protocol we written
     
-    server = MultiThreadedServer(server_protocol) # pass it to server (i.e. MultithreadedServer)
+    server = MultiThreadedServer(protocol=server_protocol) # pass it to server (i.e. MultithreadedServer)
     
     server.listen() # server now listening for requests from clients
     
@@ -182,7 +178,7 @@ if __name__ == '__main__':  # client_main.py
 
     client_protocol = MyClientProtocol() # create protocol we written
     
-    client = Client(client_protocol) # pass it to client
+    client = Client(protocol=client_protocol) # pass it to client
     
     client.open() # client will now try to establish connection with server. 
                   # If it does, client will send the request to server

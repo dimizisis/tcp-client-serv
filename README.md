@@ -7,17 +7,17 @@ Library written in Python 3.7, for easy client-server communication through sock
 
 ### Prerequisites
 
-server.py & client.py must be in the same folder of your .py file.
+```server.py``` & ```client.py``` must be in the same folder of your .py file.
 
 To import all classes from server.py:
 
-```
+```python
 from server import *
 ```
 
 To import all classes from client.py:
 
-```
+```python
 from client import *
 ```
 
@@ -25,7 +25,7 @@ from client import *
 
 ### server.py
 
-There are 3 kinds (classes) of server included in library (server.py):
+There are 3 kinds (classes) of server included in library (```server.py```):
 
 ```
 Server
@@ -33,21 +33,21 @@ IterativeServer
 MultithreadedServer
 ```
 
-To create a server object (i.e. simple Server):
+To create a server object (i.e. simple ```Server```):
 
-```
+```python
 server = Server(port, protocol)
 ```
 or
-```
+```python
 server = Server(protocol=MyServerProtocol()) # port is by default 1234
 ```
 
-Same logic for the other two classes (IterativeServer, MultithreadedServer).
+Same logic for the other two classes (```IterativeServer```, ```MultithreadedServer```).
 
-listen() function establishes connection with client:
+```listen()```python function establishes connection with client:
 
-```
+```python
 server.listen() # server is ready to receive request
 ```
 
@@ -55,23 +55,23 @@ server.listen() # server is ready to receive request
 
 To create an object of Client class:
 
-```
+```python
 client = Client(host, port, protocol)
 ```
 or
-```
+```python
 my_port = 2345
 client = Client(port=my_port, protocol=MyClientProtocol()) # host is by default localhost
 ```
 or
-```
+```python
 client = Client(protocol=MyClientProtocol()) # host is by default localhost, 
                                              # port is by default 1234
 ```                         
 
-open() function establishes connection with Server (server must probably be listening):
+```open()``` function establishes connection with Server (server must probably be listening):
 
-```
+```python
 client.open() # client tries to connect with server
               # when connected, sends the request
               # receives reply
@@ -80,11 +80,11 @@ client.open() # client tries to connect with server
 
 #### Server
 
-Server will wait for a request, will send response (if no errors will occure) and will close the connection. Server will be used for one and only request.
+```Server``` will wait for a request, will send response (if no errors will occure) and will close the connection. ```Server``` will be used for one and only request.
 
 ##### Usage Example 
 
-```
+```python
 server = Server(protocol=a_server_protocol())  # create server object (must create a protocol to pass)
 
 server.listen() # server will listen for one request only
@@ -92,22 +92,22 @@ server.listen() # server will listen for one request only
 
 #### IterativeServer
 
-IterativeServer will serve one client at a time, until it is stopped (CTRL + C).
+```IterativeServer``` will serve one client at a time, until it is stopped (CTRL + C).
 
 ##### Usage Example
 
-```
+```python
 server = IterativeServer(protocol=a_server_protocol())  # create server object (must create a protocol to pass)
 
 server.listen() # server will listen forever, and serve one client each time (not 2 or more parallel)
 ```
 #### MultithreadedServer
 
-Multithreaded server creates a thread, for each request arrives. The difference here (comparing to IterativeServer) is that our server can serve multiple requests in parallel. Server is active until it is stopped (CTRL + C).
+```Multithreaded``` server creates a thread, for each request arrives. The difference here (comparing to ```IterativeServer```) is that our server can serve multiple requests in parallel. Server is active until it is stopped (CTRL + C).
 
 ##### Usage Example
 
-```
+```python
 server = MultithreadedServer(protocol=a_server_protocol())  # create server object (must create a protocol to pass)
 
 server.listen() # server will listen forever, and serve multiple client requests in parallel
@@ -117,15 +117,15 @@ server.listen() # server will listen forever, and serve multiple client requests
 
 #### Server
 
-1. Create a class (i.e. MyServerProtocol) & implement ServerProtocol abstract class.
+1. Create a class (i.e. ```MyServerProtocol```) & implement ```ServerProtocol``` abstract class.
 
-2. Implement process_request function (PyCharm screenshot):
+2. Implement ```process_request()``` function (PyCharm screenshot):
 
 ![alt text](https://i.imgur.com/hHnGStx.png)
 
-3. Server knows what to do on request through process_request function. input_msg is client's request.
+3. Server knows what to do on request through ```process_request()``` function. ```input_msg``` is client's request.
 
-```
+```python
 class MyServerProtocol(ServerProtocol):
 
   def process_request(self, input_msg):
@@ -138,7 +138,7 @@ class MyServerProtocol(ServerProtocol):
 4. After finishing 
 your protocol, it is time to integrate it in our server:
 
-```
+```python
 if __name__ == '__main__':  # server_main.py
 
     server_protocol = MyServerProtocol() # create protocol we written
@@ -150,7 +150,7 @@ if __name__ == '__main__':  # server_main.py
 ```   
 #### Client
 
-1. Create a class (i.e. MyClientProtocol) & implement ClientProtocol abstract class.
+1. Create a class (i.e. ```MyClientProtocol```) & implement ```ClientProtocol``` abstract class.
 
 2. Implement prepare_request & process_reply function (PyCharm screenshot):
 
@@ -158,7 +158,7 @@ if __name__ == '__main__':  # server_main.py
 
 3. Client knows what kind of request to send through prepare_request function, process_reply function is for printing server's message. input_msg (process_reply parameter) is server's reply.
 
-```
+```python
 class MyClientProtocol(ClientProtocol):
 
     def prepare_request(self):
@@ -174,7 +174,7 @@ class MyClientProtocol(ClientProtocol):
 
 4. After finishing writing your protocol, it is time to integrate it in our client object:
 
-```
+```python
 if __name__ == '__main__':  # client_main.py
 
     client_protocol = MyClientProtocol() # create protocol we written

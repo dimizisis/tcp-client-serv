@@ -156,7 +156,7 @@ if __name__ == '__main__':  # server_main.py
 
 ![alt text](https://i.imgur.com/ScqG1oR.png)
 
-3. Client knows what kind of request to send through prepare_request function, process_reply function is for printing server's message. input_msg (process_reply parameter) is server's reply.
+3. Client knows what kind of request to send through ```prepare_request()``` function, ```process_reply()``` function is for printing server's message. ```input_msg``` (```process_reply()``` parameter) is server's reply.
 
 ```python
 class MyClientProtocol(ClientProtocol):
